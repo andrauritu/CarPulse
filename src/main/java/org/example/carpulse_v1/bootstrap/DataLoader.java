@@ -1,7 +1,5 @@
 package org.example.carpulse_v1.bootstrap;
 
-
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -38,20 +36,22 @@ public class DataLoader implements CommandLineRunner {
         // 2) Seed an ADMIN user
         User dad = new User();
         dad.setUsername("dad@example.com");
+        dad.setEmail("dad@example.com");
         dad.setPassword(passwordEncoder.encode("dad123"));
         dad.setRoles(List.of(Role.ROLE_ADMIN));
         dad.setFamily(smiths);
         userRepo.save(dad);
 
-        // 3) (Optional) Seed a regular USER
+        // 3) Seed a regular USER
         User kid = new User();
         kid.setUsername("kid@example.com");
+        kid.setEmail("kid@example.com");
         kid.setPassword(passwordEncoder.encode("password"));
         kid.setRoles(List.of(Role.ROLE_USER));
         kid.setFamily(smiths);
         userRepo.save(kid);
 
-        // 4) (Optional) Seed a sample Car
+        // 4) Seed a sample Car
         Car c = new Car();
         c.setFamily(smiths);
         c.setLicensePlate("ABC-123");
@@ -61,6 +61,5 @@ public class DataLoader implements CommandLineRunner {
         c.setMileage(50000);
         c.setImageUrl("https://example.com/corolla.jpg");
         carRepo.save(c);
-
     }
 }
